@@ -1,0 +1,330 @@
+/* Ported from accounts/templates/accounts/signup.html <style> block.
+   Scoped under .signup-page so it doesn't leak into other pages/components. */
+
+.signup-page {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Ambient Glow Background Effect */
+.signup-page .glow-overlay {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.signup-page .auth-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 460px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 80px rgba(56, 189, 248, 0.03);
+    backdrop-filter: blur(16px);
+    transition: var(--transition);
+}
+
+.signup-page .auth-card:hover {
+    border-color: rgba(56, 189, 248, 0.25);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 100px rgba(56, 189, 248, 0.05);
+}
+
+.signup-page .logo-wrap {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.signup-page .logo-text {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(to right, var(--accent-blue), var(--accent-green));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+    display: inline-block;
+}
+
+.signup-page .auth-card h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+}
+
+.signup-page .auth-card-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.signup-page .error-message {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.signup-page .form-group {
+    margin-bottom: 1.25rem;
+}
+
+.signup-page .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.signup-page .form-group input,
+.signup-page .form-group select {
+    width: 100%;
+    padding: 0.85rem 1.1rem;
+    background: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    color: var(--text-main);
+    outline: none;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.signup-page .form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    cursor: pointer;
+}
+
+.signup-page .form-group input:focus,
+.signup-page .form-group select:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+}
+
+.signup-page .btn-submit {
+    width: 100%;
+    padding: 0.9rem;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+    color: #090d16;
+}
+
+.signup-page .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
+}
+
+.signup-page .btn-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.signup-page .switch-auth-mode {
+    text-align: center;
+    margin-top: 1.75rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.signup-page .switch-auth-mode a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.signup-page .switch-auth-mode a:hover {
+    text-decoration: underline;
+}
+
+.signup-page .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.signup-page .back-link:hover {
+    color: var(--accent-blue);
+}
+
+/* Embedded Password Generator Section (Clean White Background) */
+.signup-page .password-generator-section {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 1.5rem;
+    margin: 1.25rem 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 1px solid #e2e8f0;
+    color: #1e293b;
+    text-align: left;
+}
+
+
+
+/* Strength Inline Meter */
+.signup-page .password-generator-section .strength-inline-wrapper {
+    margin-bottom: 1.25rem;
+}
+
+.signup-page .password-generator-section .strength-inline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.signup-page .password-generator-section .strength-inline-label {
+    color: #64748b;
+}
+
+.signup-page .password-generator-section .strength-inline-badge {
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.signup-page .password-generator-section .strength-inline-badge.weak {
+    background: #fef2f2;
+    color: #ef4444;
+}
+
+.signup-page .password-generator-section .strength-inline-badge.medium {
+    background: #fffbeb;
+    color: #d97706;
+}
+
+.signup-page .password-generator-section .strength-inline-badge.strong {
+    background: #f0fdf4;
+    color: #22c55e;
+}
+
+.signup-page .password-generator-section .strength-inline-bar-track {
+    width: 100%;
+    height: 5px;
+    background: #e2e8f0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.signup-page .password-generator-section .strength-inline-bar-fill {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.signup-page .password-generator-section .strength-inline-bar-fill.weak {
+    width: 33.3%;
+    background: #ef4444;
+}
+
+.signup-page .password-generator-section .strength-inline-bar-fill.medium {
+    width: 66.6%;
+    background: #d97706;
+}
+
+.signup-page .password-generator-section .strength-inline-bar-fill.strong {
+    width: 100%;
+    background: #22c55e;
+}
+
+/* Requirements Inline List */
+.signup-page .password-generator-section .requirements-inline-section .requirements-inline-title {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 0.5rem;
+}
+
+.signup-page .password-generator-section .req-inline-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.signup-page .password-generator-section .req-inline-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.775rem;
+    font-weight: 500;
+}
+
+.signup-page .password-generator-section .req-inline-list li.unmet {
+    color: #94a3b8;
+}
+
+.signup-page .password-generator-section .req-inline-list li.met {
+    color: #16a34a;
+}
+
+.signup-page .password-generator-section .req-inline-bullet {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+
+.signup-page .password-generator-section .req-inline-list li.unmet .req-inline-bullet {
+    border: 1.5px solid #cbd5e1;
+    color: #94a3b8;
+}
+
+.signup-page .password-generator-section .req-inline-list li.met .req-inline-bullet {
+    background: #f0fdf4;
+    color: #16a34a;
+    border: 1.5px solid #16a34a;
+}
+

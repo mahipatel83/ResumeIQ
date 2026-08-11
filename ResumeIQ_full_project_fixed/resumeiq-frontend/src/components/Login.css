@@ -1,0 +1,176 @@
+/* Ported from accounts/templates/accounts/login.html <style> block.
+   Scoped under .login-page so it doesn't leak into other pages/components. */
+
+.login-page {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Ambient Glow Background Effect */
+.login-page .glow-overlay {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.login-page .auth-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 460px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 80px rgba(56, 189, 248, 0.03);
+    backdrop-filter: blur(16px);
+    transition: var(--transition);
+}
+
+.login-page .auth-card:hover {
+    border-color: rgba(56, 189, 248, 0.25);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 100px rgba(56, 189, 248, 0.05);
+}
+
+.login-page .logo-wrap {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-page .logo-text {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(to right, var(--accent-blue), var(--accent-green));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+    display: inline-block;
+}
+
+.login-page .auth-card h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+}
+
+.login-page .auth-card-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.login-page .error-message {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.login-page .form-group {
+    margin-bottom: 1.25rem;
+}
+
+.login-page .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.login-page .form-group input {
+    width: 100%;
+    padding: 0.85rem 1.1rem;
+    background: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    color: var(--text-main);
+    outline: none;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.login-page .form-group input:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+}
+
+.login-page .btn-submit {
+    width: 100%;
+    padding: 0.9rem;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+    color: #090d16;
+}
+
+.login-page .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
+}
+
+.login-page .btn-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.login-page .switch-auth-mode {
+    text-align: center;
+    margin-top: 1.75rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.login-page .switch-auth-mode a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.login-page .switch-auth-mode a:hover {
+    text-decoration: underline;
+}
+
+.login-page .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.login-page .back-link:hover {
+    color: var(--accent-blue);
+}

@@ -1,0 +1,282 @@
+/* Custom Settings Styling matching the dark/light-blue aesthetic */
+.recruiter-settings-root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-dark-pure);
+    color: var(--text-white);
+    min-height: 100vh;
+}
+
+.settings-header {
+    margin-bottom: 2.5rem;
+}
+
+.settings-header h1 {
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 0.4rem;
+}
+
+.settings-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Company Profile Card Styling */
+.company-profile-card {
+    background-color: var(--bg-dark-card);
+    border: 1px solid rgba(0, 210, 255, 0.08);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.company-profile-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(0, 210, 255, 0.03) 0%, rgba(0,0,0,0) 70%);
+    pointer-events: none;
+}
+
+.profile-form-group {
+    margin-bottom: 1.25rem;
+}
+
+.profile-form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.profile-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.profile-input-wrapper i {
+    position: absolute;
+    left: 1.2rem;
+    color: var(--accent-cyan);
+    font-size: 1.2rem;
+}
+
+.profile-input-wrapper input {
+    width: 100%;
+    padding: 0.85rem 1rem 0.85rem 3rem;
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.profile-input-wrapper input:focus {
+    outline: none;
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.btn-profile-save {
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-cyan) 100%);
+    border: none;
+    color: #030508;
+    padding: 0.85rem 1.8rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(0, 210, 255, 0.25);
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+}
+
+.btn-profile-save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 210, 255, 0.45);
+}
+
+/* Responsive Jobs settings grid */
+.settings-grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* Job management card styling */
+.job-manage-card {
+    background-color: var(--bg-dark-card);
+    border: 1px solid rgba(0, 210, 255, 0.08);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.job-manage-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--accent-blue), var(--accent-cyan));
+    opacity: 0.7;
+}
+
+.job-manage-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 210, 255, 0.35);
+    box-shadow: 0 10px 25px rgba(0, 210, 255, 0.07);
+}
+
+.job-info-header {
+    margin-bottom: 1.25rem;
+}
+
+.job-info-header h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 0.35rem;
+    line-height: 1.3;
+}
+
+.job-company {
+    font-size: 0.95rem;
+    color: var(--accent-cyan);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.job-details-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.job-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: none;
+    padding: 0;
+    border: none;
+    color: var(--text-muted);
+}
+
+.job-meta-item i {
+    color: inherit;
+    font-size: 0.95rem;
+}
+
+.job-meta-item.theme-code,
+.job-meta-item.theme-backend,
+.job-meta-item.theme-ui,
+.job-meta-item.theme-database,
+.job-meta-item.theme-marketing,
+.job-meta-item.theme-default {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+}
+
+/* Premium actions footer */
+.job-actions-row {
+    display: flex;
+    gap: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1.25rem;
+    margin-top: auto;
+}
+
+.btn-action-edit {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    background: rgba(0, 210, 255, 0.05);
+    border: 1px solid rgba(0, 210, 255, 0.2);
+    color: var(--accent-cyan);
+    padding: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-action-edit:hover {
+    background: var(--accent-cyan);
+    color: #030508;
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+}
+
+.btn-action-delete {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    background: rgba(255, 77, 77, 0.05);
+    border: 1px solid rgba(255, 77, 77, 0.2);
+    color: #ff4d4d;
+    padding: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-action-delete:hover {
+    background: #ff4d4d;
+    color: #ffffff;
+    border-color: #ff4d4d;
+    box-shadow: 0 0 10px rgba(255, 77, 77, 0.3);
+}

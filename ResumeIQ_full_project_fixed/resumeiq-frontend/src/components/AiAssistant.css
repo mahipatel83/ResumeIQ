@@ -1,0 +1,180 @@
+/* Ported from LandingPage/templates/LandingPage/ai_assistant.html <style> block.
+   Scoped under .ai-assistant-page so it doesn't leak into other pages/components. */
+
+.ai-assistant-page {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    background: #000000;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: white;
+    cursor: pointer;
+    position: relative;
+}
+
+.ai-assistant-page *,
+.ai-assistant-page *::before,
+.ai-assistant-page *::after {
+    box-sizing: border-box;
+}
+
+.ai-assistant-page .container {
+    width: 95%;
+    max-width: 1300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+/* Robot */
+
+.ai-assistant-page .robot {
+    position: relative;
+    z-index: 2;
+    margin-right: 20px;
+}
+
+.ai-assistant-page .robot img {
+    width: 340px;
+    animation: ai-float 3s ease-in-out infinite;
+}
+
+@keyframes ai-float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-18px);
+    }
+}
+
+/* Chat Bubble */
+
+.ai-assistant-page .chat-box {
+    position: relative;
+    width: 420px;
+    min-height: 280px;
+    background: #0d1829;
+    border: 2px solid #33ccff;
+    border-radius: 30px;
+    padding: 25px;
+    box-shadow: 0 0 30px rgba(0, 180, 255, .5);
+}
+
+/* Bubble Tail */
+
+.ai-assistant-page .chat-box::before {
+    content: "";
+    position: absolute;
+    left: -34px;
+    top: 100px;
+    border-top: 24px solid transparent;
+    border-bottom: 24px solid transparent;
+    border-right: 34px solid #33ccff;
+}
+
+.ai-assistant-page .chat-box::after {
+    content: "";
+    position: absolute;
+    left: -30px;
+    top: 102px;
+    border-top: 22px solid transparent;
+    border-bottom: 22px solid transparent;
+    border-right: 32px solid #0d1829;
+}
+
+/* Heading */
+
+.ai-assistant-page .chat-box h1 {
+    font-size: 34px;
+    color: #37d8ff;
+    margin-bottom: 12px;
+}
+
+/* Typing Text */
+
+.ai-assistant-page #text {
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: 500;
+}
+
+/* Interactive Controls Button */
+
+.ai-assistant-page .control-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #33ccff;
+    cursor: pointer;
+    transition: transform 0.2s;
+    outline: none;
+    z-index: 10;
+}
+
+.ai-assistant-page .control-btn:hover {
+    transform: scale(1.2);
+}
+
+.ai-assistant-page .pulse {
+    animation: ai-pulse-anim 1s infinite;
+}
+
+@keyframes ai-pulse-anim {
+    50% {
+        transform: scale(1.25);
+    }
+}
+
+.ai-assistant-page .click-prompt {
+    position: absolute;
+    bottom: 20px;
+    font-size: 14px;
+    color: #33ccff;
+    opacity: 0.7;
+    animation: ai-blink 1.5s infinite;
+}
+
+@keyframes ai-blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Close / Back button */
+.ai-assistant-page .close-btn {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(13, 24, 41, 0.85);
+    border: 1.5px solid #33ccff;
+    color: #33ccff;
+    font-size: 20px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 12px rgba(0, 180, 255, 0.3);
+}
+
+.ai-assistant-page .close-btn:hover {
+    background: rgba(51, 204, 255, 0.15);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 180, 255, 0.5);
+}
