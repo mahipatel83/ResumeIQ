@@ -8,7 +8,7 @@ SECRET_KEY = 'django-insecure-ak+4k)=hnci4ik!vjlcfpm5hugxph9j*d=!#)&o66-+zadtm*3
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["resumeiq-myproject.onrender.com"]
 
 # Application definition
 
