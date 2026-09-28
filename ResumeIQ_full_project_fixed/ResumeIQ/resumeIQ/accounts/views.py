@@ -16,7 +16,7 @@ from resumeIQ.mongodb import users
 # bounces to the matching React route. The React pages submit via axios as
 # POST + JSON, which is handled below and answered with JSON instead of a
 # rendered template.
-REACT_APP_BASE_URL = "http://localhost:5173"
+REACT_APP_BASE_URL = "https://resume-iq-steel.vercel.app"
 
 # Where each role should land after logging in. These are still
 # server-rendered Django views (not yet converted to React), so the
