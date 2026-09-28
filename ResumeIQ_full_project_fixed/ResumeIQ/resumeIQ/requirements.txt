@@ -16,3 +16,5 @@ langchain-community
 langchain-google-genai
 langchain-openai
 
+gunicorn
+python-dotenv
