@@ -8,7 +8,11 @@ SECRET_KEY = 'django-insecure-ak+4k)=hnci4ik!vjlcfpm5hugxph9j*d=!#)&o66-+zadtm*3
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["resumeiq-myproject.onrender.com"]
+ALLOWED_HOSTS = [
+    "resumeiq-myproject.onrender.com",
+    "127.0.0.1",
+    "localhost",
+]
 
 # Application definition
 
@@ -42,18 +46,11 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://resume-iq-steel.vercel.app",
-]
-
-CORS_ALLOW_CREDENTIALS = True
-
-CSRF_TRUSTED_ORIGINS = [
-    "https://resume-iq-steel.vercel.app",
 ]
 # accounts login/signup/logout rely on the Django session cookie, so the
 # browser needs to be allowed to send/receive it on cross-origin axios
 # requests from the Vite dev server (axios calls use withCredentials: true).
-
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'resumeIQ.urls'
 
@@ -117,8 +114,3 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER or 'no-reply@resumeiq.local')
 
-SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_SAMESITE = "None"
-
-CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_SAMESITE = "None"
