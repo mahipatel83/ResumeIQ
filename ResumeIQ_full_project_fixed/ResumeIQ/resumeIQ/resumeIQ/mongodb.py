@@ -1,6 +1,10 @@
+import os
 from pymongo import MongoClient
+from dotenv import load_dotenv
 
-client = MongoClient("mongodb://localhost:27017/")
+load_dotenv()
+
+client = MongoClient(os.getenv("MONGO_URI"))
 
 db = client["resumeiq"]
 
