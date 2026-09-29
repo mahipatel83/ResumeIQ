@@ -13,7 +13,7 @@ from resumeIQ.mongodb import db
 # Point this at wherever your React app is served, e.g.:
 #   - Vite dev server during development: "http://localhost:5173" (Vite's default port)
 #   - A built React app served by Django/another host in production
-REACT_APP_BASE_URL = "http://localhost:5173"
+REACT_APP_BASE_URL = "https://resume-iq-steel.vercel.app"
 
 def home(request):
     return redirect(REACT_APP_BASE_URL + "/")
