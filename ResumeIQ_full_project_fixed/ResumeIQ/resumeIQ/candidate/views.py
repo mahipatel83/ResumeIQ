@@ -29,7 +29,7 @@ def setup_nltk():
 
 setup_nltk()
 
-REACT_APP_BASE_URL = "http://localhost:5173"
+REACT_APP_BASE_URL = "https://resume-iq-steel.vercel.app"
 
 def dashboard(request):
     user_email = request.session.get("user_email")
