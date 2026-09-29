@@ -89,6 +89,11 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = "None"
+
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = "None"
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
