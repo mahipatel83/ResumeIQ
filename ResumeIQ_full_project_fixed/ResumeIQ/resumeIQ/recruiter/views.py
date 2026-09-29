@@ -14,7 +14,7 @@ from bson.objectid import ObjectId
 logger = logging.getLogger(__name__)
 
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
-REACT_APP_BASE_URL = "http://localhost:5173"
+REACT_APP_BASE_URL = "https://resume-iq-steel.vercel.app"
 
 
 def _format_salary(salary_min, salary_max, salary_hidden):
