@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import api from "../api/axios";
 import "./Login.css";
 
-// --- Routes (swap these for your router's paths / URL names as needed) ---
 const ROUTES = {
   home: "/",
   signup: "/signup",
@@ -11,25 +10,55 @@ const ROUTES = {
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
+
+    setError("");
     setSubmitting(true);
 
     try {
-      const res = await api.post("/login/", { email, password });
-      // Dashboards (admin/recruiter/candidate) are still server-rendered
-      // Django pages, so this is a full browser navigation — it carries
-      // the session cookie the same way a normal form POST redirect would.
-      window.location.href = res.data.redirect_url;
+      const response = await api.post(
+        "/login/",
+        {
+          email: email.trim(),
+          password: password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      console.log("Login response:", response.data);
+
+      if (response.data.success && response.data.redirect_url) {
+        window.location.href = response.data.redirect_url;
+        return;
+      }
+
+      setError("Login successful, but dashboard URL was not received.");
     } catch (err) {
-      const data = err.response && err.response.data;
-      setError((data && data.error) || "Something went wrong. Please try again.");
-      if (data && typeof data.email === "string") {
-        setEmail(data.email);
+      console.error("Login error:", err);
+
+      if (err.response) {
+        const data = err.response.data;
+
+        setError(
+          data?.error ||
+            `Login failed. Server returned ${err.response.status}.`
+        );
+
+        if (typeof data?.email === "string") {
+          setEmail(data.email);
+        }
+      } else if (err.request) {
+        setError(
+          "Unable to connect to the server. Please check your internet connection and try again."
+        );
+      } else {
+        setError("Something went wrong. Please try again.");
       }
     } finally {
       setSubmitting(false);
@@ -39,21 +68,30 @@ export default function Login() {
   return (
     <div className="login-page">
       <div className="glow-overlay"></div>
+
       <div className="auth-card">
         <div className="logo-wrap">
           <div className="logo-text">ResumeIQ</div>
         </div>
+
         <h2>Welcome Back</h2>
-        <p className="auth-card-subtitle">Sign in to access your analytics dashboard.</p>
 
-        {error && <div className="error-message">{error}</div>}
+        <p className="auth-card-subtitle">
+          Sign in to access your analytics dashboard.
+        </p>
 
-        <form
-  onSubmit={handleSubmit}
-  method="post"
-  action="#">
+        {error && (
+          <div className="error-message">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="email">Email or Username</label>
+            <label htmlFor="email">
+              Email or Username
+            </label>
+
             <input
               type="text"
               id="email"
@@ -65,8 +103,12 @@ export default function Login() {
               autoComplete="username"
             />
           </div>
+
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">
+              Password
+            </label>
+
             <input
               type="password"
               id="password"
@@ -78,15 +120,24 @@ export default function Login() {
               autoComplete="current-password"
             />
           </div>
-          <button type="submit" className="btn-submit" disabled={submitting}>
+
+          <button
+            type="submit"
+            className="btn-submit"
+            disabled={submitting}
+          >
             {submitting ? "Logging In..." : "Log In"}
           </button>
         </form>
 
         <div className="switch-auth-mode">
-          Don't have an account? <a href={ROUTES.signup}>Sign Up</a>
+          Don't have an account?{" "}
+          <a href={ROUTES.signup}>Sign Up</a>
         </div>
-        <a href={ROUTES.home} className="back-link">← Back to Home</a>
+
+        <a href={ROUTES.home} className="back-link">
+          ← Back to Home
+        </a>
       </div>
     </div>
   );
