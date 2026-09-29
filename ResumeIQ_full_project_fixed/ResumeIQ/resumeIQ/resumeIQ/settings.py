@@ -44,9 +44,12 @@ MIDDLEWARE = [
 
 # Allow the React (Vite) dev server to call this API during development.
 CORS_ALLOWED_ORIGINS = [
+    "https://resume-iq-steel.vercel.app",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 ]
+
+CORS_ALLOW_CREDENTIALS = True
 # accounts login/signup/logout rely on the Django session cookie, so the
 # browser needs to be allowed to send/receive it on cross-origin axios
 # requests from the Vite dev server (axios calls use withCredentials: true).
